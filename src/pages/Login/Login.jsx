@@ -3,23 +3,44 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
-  const { user, signIn } = useContext(AuthContext);
+  const { user, signIn, signInWithGoogle, signInWithGithub } =
+    useContext(AuthContext);
   const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+
   const handleToLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     form.reset();
-    console.log(email, password);
+    // console.log(email, password);
 
     signIn(email, password)
       .then((result) => {
+        // console.log(result.user);
+        setSuccess("Login Successfully");
+      })
+      .catch((error) => setError(error.message));
+  };
+
+  const handleToLoginWithGoogle = () => {
+    signInWithGoogle()
+      .then((result) => {
         console.log(result.user);
       })
-      .catch((error) => console.error(error.message));
-
-    setSuccess("Login Successfully");
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+  const handleToLoginWithGithub = () => {
+    signInWithGithub()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
   };
 
   return (
@@ -67,6 +88,7 @@ const Login = () => {
                   </a>
                 </label>
               </div>
+              <p className="text-red-500">{error}</p>
               <p className="text-green-400">{success}</p>
               <div className="form-control mt-6">
                 <button className="btn bg-[#ff0018] border-none font-medium text-lg hover:bg-[#d30c01] capitalize">
@@ -84,10 +106,16 @@ const Login = () => {
               </p>
             </form>
             <div className="flex justify-between gap-4 pb-8 mx-auto">
-              <button className="btn btn-outline btn-warning  capitalize font-medium text-lg hover:text-[#ffffff] ">
+              <button
+                onClick={handleToLoginWithGoogle}
+                className="btn btn-outline btn-warning  capitalize font-medium text-lg hover:text-[#ffffff] "
+              >
                 Google Sign-in
               </button>
-              <button className="btn btn-outline btn-success capitalize font-medium text-lg">
+              <button
+                onClick={handleToLoginWithGithub}
+                className="btn btn-outline btn-success capitalize font-medium text-lg"
+              >
                 Github Sign-in
               </button>
             </div>

@@ -127,9 +127,7 @@ const Register = () => {
                   required
                 />
               </div>
-              <p className="text-red-500">
-                <strong>{error}</strong>
-              </p>
+              <p className="text-red-500">{error}</p>
               <div className="form-control mt-6">
                 <button className="btn bg-[#ff0018] border-none font-medium text-lg hover:bg-[#d30c01] capitalize">
                   Register
