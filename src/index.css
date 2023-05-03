@@ -3,6 +3,23 @@
 @tailwind utilities;
 
 /* :root {
+  font-family: "Kaushan Script", cursive;
+} */
+
+.header-link-style {
+  margin-right: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #ff0018;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.active {
+  @apply font-medium tracking-wide bg-[#ff0018] text-white transition-colors duration-200 hover:text-yellow-200 hover:bg-[#ff3b48];
+}
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;

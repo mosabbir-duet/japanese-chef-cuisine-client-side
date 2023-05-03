@@ -1,0 +1,11 @@
+.header-name {
+  font-family: cursive;
+}
+
+.header-mobile-style {
+  @apply font-medium text-xl tracking-wide text-[#ff1800] transition-colors duration-200 hover:text-[#ffc000];
+}
+
+.mobile-nav:last-child {
+  border: none;
+}
