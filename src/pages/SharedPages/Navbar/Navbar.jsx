@@ -1,9 +1,21 @@
 import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProviders";
 import "./Navbar.css";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleToSignOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+
   return (
     <>
       <div className="container mx-auto py-7 bg-white border-b border-spacing-3">
@@ -22,13 +34,17 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            <NavLink
-              className={`header-link-style ${({ isActive }) =>
-                isActive ? "active" : "default"}`}
-              to="/login"
-            >
-              Login
-            </NavLink>
+            {user ? (
+              <></>
+            ) : (
+              <NavLink
+                className={`header-link-style ${({ isActive }) =>
+                  isActive ? "active" : "default"}`}
+                to="/login"
+              >
+                Login
+              </NavLink>
+            )}
             <NavLink
               className={`header-link-style ${({ isActive }) =>
                 isActive ? "active" : "default"}`}
@@ -44,7 +60,32 @@ const Navbar = () => {
               Blog
             </NavLink>
           </nav>
+          <div>
+            {user ? (
+              <div className="flex items-center ">
+                <img
+                  style={{
+                    height: "55px",
+                    width: "55px",
+                    borderRadius: "50%",
+                    border: "2px dotted #ff0018",
+                    padding: "2px",
+                    marginRight: "15px",
+                  }}
+                  src={user.photoURL}
+                  className="tooltip tooltip-open tooltip-bottom"
+                  data-tip="hello"
+                ></img>{" "}
+                <button onClick={handleToSignOut} className="btn btn-warning">
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
+
         {/* Mobile Navbar Section */}
         <div className="lg:hidden ">
           {/* Dropdown Open Button */}

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Login = () => {
+  const { user, signIn } = useContext(AuthContext);
+  const [success, setSuccess] = useState("");
   const handleToLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -9,6 +12,14 @@ const Login = () => {
     const password = form.password.value;
     form.reset();
     console.log(email, password);
+
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => console.error(error.message));
+
+    setSuccess("Login Successfully");
   };
 
   return (
@@ -56,6 +67,7 @@ const Login = () => {
                   </a>
                 </label>
               </div>
+              <p className="text-green-400">{success}</p>
               <div className="form-control mt-6">
                 <button className="btn bg-[#ff0018] border-none font-medium text-lg hover:bg-[#d30c01] capitalize">
                   Login
