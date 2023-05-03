@@ -57,7 +57,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn bg-[#ff0018] border-none font-medium text-lg hover:bg-[#d30c01] ">
+                <button className="btn bg-[#ff0018] border-none font-medium text-lg hover:bg-[#d30c01] capitalize">
                   Login
                 </button>
               </div>
