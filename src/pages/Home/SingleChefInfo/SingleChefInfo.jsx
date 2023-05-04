@@ -36,7 +36,7 @@ const SingleChefInfo = ({ chef }) => {
               </h3>
             </div>
           </div>
-          <Link to={`/${id}`}>
+          <Link to={`/chef/${parseInt(id)}`}>
             <button className="btn btn-outline btn-warning hover:text-[#fff] text-center capitalize text-lg block mx-auto my-5">
               View Recipe
             </button>
