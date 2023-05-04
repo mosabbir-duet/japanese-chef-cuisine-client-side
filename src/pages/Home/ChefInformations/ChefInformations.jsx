@@ -15,9 +15,15 @@ const ChefInformations = () => {
 
   return (
     <div className="container mx-auto my-12">
-      <h2 className="text-5xl text-center font-semibold pb-4 border-b-2  mb-12  ">
-        Our <span className="text-[#ffc000]">Chef's</span>
-      </h2>
+      <div className="pb-4 border-b-2  mb-12">
+        <h2 className="text-5xl text-center font-semibold   ">
+          Our <span className="text-[#ffc000]">Chef's</span>
+        </h2>
+        <p className="text-center py-2">
+          Get access to thousands of recipes from famous chefs.
+        </p>
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12">
         {chefInformations.map((chef) => (
           <SingleChefInfo key={chef.id} chef={chef}></SingleChefInfo>

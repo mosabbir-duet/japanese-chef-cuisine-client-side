@@ -4,6 +4,8 @@ import Blog from "../pages/Blog/Blog";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import ShowRecipe from "../pages/ShowRecipe/ShowRecipe";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>,
+      },
+      {
+        path: "/:id",
+        element: (
+          <PrivateRoute>
+            <ShowRecipe></ShowRecipe>
+          </PrivateRoute>
+        ),
       },
     ],
   },
