@@ -38,8 +38,8 @@ const Register = () => {
       .then((result) => {
         const loggedUser = result.user;
         // console.log(loggedUser);
-        updateUserinfo(result.user, name, photoUrl);
         setSuccess("User has been registered successfully");
+        updateUserinfo(result.user, name, photoUrl);
       })
       .catch((error) => {
         setError(error);

@@ -6,8 +6,8 @@ import "./Navbar.css";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { user, logOut } = useContext(AuthContext);
-
+  const { user, logOut, click } = useContext(AuthContext);
+  console.log(click);
   const handleToSignOut = () => {
     logOut()
       .then(() => {})
@@ -34,7 +34,7 @@ const Navbar = () => {
             >
               Home
             </NavLink>
-            {user ? (
+            {user && click ? (
               <></>
             ) : (
               <NavLink
@@ -61,7 +61,7 @@ const Navbar = () => {
             </NavLink>
           </nav>
           <div>
-            {user ? (
+            {user && click ? (
               <div className="flex items-center ">
                 <img
                   style={{

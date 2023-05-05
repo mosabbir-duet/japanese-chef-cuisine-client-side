@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Spinner from "../../../Spinner/Spinner";
 import SingleChefInfo from "../SingleChefInfo/SingleChefInfo";
 
 const ChefInformations = () => {
   const [chefInformations, setChefInformations] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(
@@ -11,6 +13,7 @@ const ChefInformations = () => {
       .then((res) => res.json())
       .then((data) => setChefInformations(data))
       .catch((error) => console.error(error.message));
+    setLoading(false);
   }, []);
 
   return (
@@ -23,7 +26,7 @@ const ChefInformations = () => {
           Get access to thousands of recipes from famous chefs.
         </p>
       </div>
-
+      {loading ? <Spinner></Spinner> : <></>}
       <div class="grid grid-cols-1 md:grid-cols-3 gap-x-12">
         {chefInformations.map((chef) => (
           <SingleChefInfo key={chef.id} chef={chef}></SingleChefInfo>

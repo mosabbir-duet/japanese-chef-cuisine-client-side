@@ -18,14 +18,19 @@ const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [click, setClick] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   // User Registration
   const createUser = (email, password) => {
+    setClick(false);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // User Sign in
 
   const signIn = (email, password) => {
+    setClick(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const signInWithGoogle = () => {
@@ -43,6 +48,7 @@ const AuthProviders = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("auth state changed", currentUser);
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       unsubscribe();
@@ -53,6 +59,7 @@ const AuthProviders = ({ children }) => {
     user,
     createUser,
     signIn,
+    click,
     logOut,
     signInWithGoogle,
     signInWithGithub,

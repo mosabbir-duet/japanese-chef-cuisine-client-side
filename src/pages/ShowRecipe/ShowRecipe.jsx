@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Spinner from "../../Spinner/Spinner";
 
 const ShowRecipe = () => {
   const [isDisabled, setIsDisabled] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const [chefInfo, setChefInfo] = useState({});
   useEffect(() => {
@@ -14,12 +16,14 @@ const ShowRecipe = () => {
       `https://japanese-chef-cuisine-server-side-mosabbir-duet.vercel.app/chefInformation/${id}`
     )
       .then((res) => res.json())
-      .then((data) => setChefInfo(data));
+      .then((data) => setChefInfo(data))
+      .catch((error) => console.error(error.message));
+    setLoading(false);
   }, {});
 
   const { name, experience, image, likes, description } = chefInfo;
-  const recipe = chefInfo?.recipes;
-  console.log(recipe);
+  // const recipe = chefInfo?.recipes;
+  // console.log(recipe);
   // console.log(recipe.length);
 
   // this onclick event used for showing favourite by toast and disabled the button after click
@@ -30,6 +34,7 @@ const ShowRecipe = () => {
 
   return (
     <div className="container mx-auto px-4 my-4">
+      {loading ? <Spinner></Spinner> : <></>}
       <div className=" grid grid-cols-1 lg:grid-cols-2 card justify-center items-center">
         <div>
           <figure>

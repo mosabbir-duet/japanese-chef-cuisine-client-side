@@ -28,9 +28,9 @@ Documentation Link -> [React Router Link](https://reactrouter.com/en/main/start/
 - daisy ui
 - express
 
-<!-- # React Toastify
+# React Toastify
 
-Documentation Link -> [React Toastify](https://www.npmjs.com/package/react-toastify) -->
+Documentation Link -> [React Toastify](https://www.npmjs.com/package/react-toastify)
 
 # Resources & Credits
 
