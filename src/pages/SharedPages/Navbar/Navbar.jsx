@@ -108,7 +108,7 @@ const Navbar = () => {
                 <Bars3Icon className="w-6 text-[#ffc000]" />
               </button>
             </div>
-            <div>
+            <>
               {user && click ? (
                 <div className="flex items-center ">
                   <img
@@ -131,7 +131,7 @@ const Navbar = () => {
               ) : (
                 <></>
               )}
-            </div>
+            </>
           </div>
           {isMenuOpen && (
             <div className="absolute top-0 left-0 w-full z-10">

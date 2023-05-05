@@ -14,6 +14,7 @@ const ChefInformations = () => {
       .then((data) => setChefInformations(data))
       .catch((error) => console.error(error.message));
     setLoading(false);
+    window.scrollTo(0, 0);
   }, []);
 
   return (
