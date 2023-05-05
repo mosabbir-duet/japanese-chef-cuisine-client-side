@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
+import LazyLoad from "react-lazy-load";
 import { useParams } from "react-router-dom";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Spinner from "../../Spinner/Spinner";
@@ -19,6 +19,7 @@ const ShowRecipe = () => {
       .then((data) => setChefInfo(data))
       .catch((error) => console.error(error.message));
     setLoading(false);
+    window.scrollTo(0, 0);
   }, {});
 
   const { name, experience, image, likes, description } = chefInfo;
@@ -35,11 +36,14 @@ const ShowRecipe = () => {
   return (
     <div className="container mx-auto px-4 my-4">
       {loading ? <Spinner></Spinner> : <></>}
+
+      {/* chef image , name description banner area  */}
+
       <div className=" grid grid-cols-1 lg:grid-cols-2 card justify-center items-center">
         <div>
-          <figure>
+          <LazyLoad height={762} offset={300}>
             <img src={image} alt="chef" className="rounded-xl w-full " />
-          </figure>
+          </LazyLoad>
         </div>
         <div className="card-body">
           <h2 className="card-title text-center block text-xl md:text-5xl text-[#ff0018]">

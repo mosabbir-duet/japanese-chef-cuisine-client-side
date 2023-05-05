@@ -1,4 +1,4 @@
-import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProviders";
@@ -74,7 +74,7 @@ const Navbar = () => {
                   }}
                   src={user.photoURL}
                   className="tooltip tooltip-open tooltip-bottom"
-                  data-tip="hello"
+                  title={user.displayName}
                 ></img>{" "}
                 <button onClick={handleToSignOut} className="btn btn-warning">
                   Sign out
@@ -105,8 +105,32 @@ const Navbar = () => {
                 title="Open Menu"
                 onClick={() => setIsMenuOpen(true)}
               >
-                <Bars3BottomRightIcon className="w-5 text-[#ffc000]" />
+                <Bars3Icon className="w-6 text-[#ffc000]" />
               </button>
+            </div>
+            <div>
+              {user && click ? (
+                <div className="flex items-center ">
+                  <img
+                    style={{
+                      height: "55px",
+                      width: "55px",
+                      borderRadius: "50%",
+                      border: "2px dotted #ff0018",
+                      padding: "2px",
+                      marginRight: "15px",
+                    }}
+                    src={user.photoURL}
+                    className="tooltip tooltip-open tooltip-bottom"
+                    title={user?.displayName}
+                  ></img>{" "}
+                  <button onClick={handleToSignOut} className="btn btn-warning">
+                    Sign out
+                  </button>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
           {isMenuOpen && (
