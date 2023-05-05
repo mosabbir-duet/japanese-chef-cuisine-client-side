@@ -9,8 +9,8 @@ const SingleChefInfo = ({ chef }) => {
   //   const handleToShowRecipe = () => {};
   const { user } = useContext(AuthContext);
   return (
-    <div className="mb-12">
-      <div className="card card-compact bg-base-100 shadow-xl h-full">
+    <div className="mb-12 px-4">
+      <div className="card card-compact bg-base-100 shadow-xl h-full py-4">
         <figure>
           <img src={image} alt="Shoes" className="h-80 w-full" />
         </figure>

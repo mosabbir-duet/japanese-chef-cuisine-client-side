@@ -6,7 +6,7 @@ import RecipeIncrediant from "../RecipeIncrediant/RecipeIncrediant";
 
 const Home = () => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4">
       <Banner></Banner>
       <ChefInformations></ChefInformations>
       <RecipeIncrediant></RecipeIncrediant>
