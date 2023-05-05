@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FaThumbsUp } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const ShowRecipe = () => {
+  const [isDisabled, setIsDisabled] = useState(false);
   const { id } = useParams();
   const [chefInfo, setChefInfo] = useState({});
   useEffect(() => {
@@ -17,6 +21,13 @@ const ShowRecipe = () => {
   const recipe = chefInfo?.recipes;
   console.log(recipe);
   // console.log(recipe.length);
+
+  // this onclick event used for showing favourite by toast and disabled the button after click
+  const handleToDisabled = (event) => {
+    toast("Wow!!! This recipe added to your favourite list");
+    setIsDisabled(true);
+  };
+
   return (
     <div className="container mx-auto px-4 my-4">
       <div className=" grid grid-cols-1 lg:grid-cols-2 card justify-center items-center">
@@ -56,41 +67,51 @@ const ShowRecipe = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-5 my-8">
           {chefInfo?.recipes?.map((recipe) => {
             return (
-              <div className="border border-spacing-2 rounded-xl p-8">
-                <div className="flex justify-between ">
-                  <p className="text-md">
-                    <strong className="text-lg">Recipe Name: </strong>
+              <div className="border border-spacing-2 rounded-xl">
+                <div className="border-b border-spacing-3 py-4">
+                  <p className="text-2xl font-medium text-[#ff0018] text-center">
+                    {/* <strong className="text-lg text-yellow-500">
+                      Recipe:{" "}
+                    </strong> */}
                     {recipe.name}
                   </p>
-                  <h1 className="text-md">
-                    <strong className="text-lg">Rating: </strong>
-                    {recipe.rating}
-                  </h1>
                 </div>
-                <div>
-                  <strong className="text-2xl text-[#ff0018] border-b-2 border-b-red-500 inline-block pb-2">
-                    Ingredient:
-                  </strong>
-                  <ol>
-                    {recipe?.ingredients.map((ingredient) => {
-                      return (
-                        <li className="text-md text-[#ffc000] ">
-                          {ingredient}
-                        </li>
-                      );
-                    })}
-                  </ol>
-                </div>
+                <div className="p-8 ">
+                  <div>
+                    <strong className="text-2xl text-[#ff0018] border-b-2 border-b-yellow-300 inline-block pb-2">
+                      Ingredient:
+                    </strong>
+                    <ol>
+                      {recipe?.ingredients.map((ingredient) => {
+                        return <li>{ingredient}</li>;
+                      })}
+                    </ol>
+                  </div>
 
-                <div>
-                  <strong className="text-2xl text-[#ffc001] border-b-2 border-b-red-500 inline-block pb-2">
-                    Cooking Method:
-                  </strong>
-                  <ol>
-                    {recipe?.cooking_method.map((method) => {
-                      return <li className="text-md ] ">{method}</li>;
-                    })}
-                  </ol>
+                  <div>
+                    <strong className="text-2xl text-[#ffc001] border-b-2 border-b-red-300 inline-block pb-2">
+                      Cooking Method:
+                    </strong>
+                    <ol>
+                      {recipe?.cooking_method.map((method) => {
+                        return <li className="text-md ] ">{method}</li>;
+                      })}
+                    </ol>
+                  </div>
+                  <div className="flex justify-between items-center mt-4 ">
+                    <h1 className="text-md">
+                      <strong className="text-lg">Rating: </strong>
+                      {recipe.rating}
+                    </h1>
+                    <button
+                      disabled={isDisabled}
+                      onClick={handleToDisabled}
+                      className="btn btn-outline btn-warning"
+                    >
+                      Add to Favourite
+                    </button>
+                    <ToastContainer></ToastContainer>
+                  </div>
                 </div>
               </div>
             );
